@@ -1,0 +1,37 @@
+syntax = "proto2";
+package riemann;
+
+import "google/protobuf/timestamp.proto";
+
+option cc_enable_arenas = true;
+
+enum Abelian {
+  GROUP = 0;
+  RING = 1;
+  FIELD = 2;
+  MODULE = 3;
+}
+
+message Moduli {
+  optional string principle = 1 [default = 'dirichlet'];
+  optional int64 functions = 2;
+
+  map<string, int64> schwarz = 3;
+}
+
+message Automorphic {
+  optional string surface = 1;
+  optional uint64 klein = 2;
+}
+
+message Hilbert {
+  repeated Moduli variety = 1;
+  repeated Automorphic elliptic = 2;
+  optional google.protobuf.Timestamp hypothesis = 3;
+  optional Abelian theorem = 4;
+  optional int64 laplace = 5;
+  map<string, int64> boludez = 6;
+  optional string kaomi = 7;
+  optional string higashi = 8 [default = 'oasis'];
+  optional Abelian nabelito = 9 [default = FIELD];
+}
